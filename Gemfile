@@ -38,6 +38,7 @@ group :development, :test do
   gem 'bullet'
   gem 'bundler-audit'
   gem 'factory_bot_rails'
+  gem 'faker'
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-rails'
