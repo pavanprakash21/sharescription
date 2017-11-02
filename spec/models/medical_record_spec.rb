@@ -18,6 +18,7 @@ describe MedicalRecord, type: :model do
 
   context 'ActiveRecord Associations' do
     it { expect(medical_record).to belong_to(:user) }
+    it { expect(medical_record).to have_many(:prescriptions) }
   end
 
   describe 'ActiveRecord databases' do
