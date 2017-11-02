@@ -1,0 +1,135 @@
+require: rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 2.3
+  Exclude:
+    - '**/*.gemspec'
+    - '**/vendor/**/*'
+    - '**/db/**/*'
+
+Rails:
+  Enabled: true
+
+Style/SpaceBeforeFirstArg:
+  Enabled: true
+
+Lint/RescueException:
+  Enabled: true
+
+Lint/UnusedBlockArgument:
+  Enabled: true
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/LineLength:
+  Enabled: true
+
+Metrics/MethodLength:
+  Enabled: true
+  CountComments: false
+  Max: 15
+
+Style/AlignHash:
+  Enabled: true
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
+
+Style/AlignParameters:
+  Enabled: true
+  EnforcedStyle: with_fixed_indentation
+
+Style/BracesAroundHashParameters:
+  Enabled: true
+
+ClassAndModuleChildren:
+  Enabled: false
+
+Style/ConstantName:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
+
+Style/EmptyLinesAroundClassBody:
+  Enabled: true
+
+Style/ExtraSpacing:
+  Enabled: false
+
+Style/FileName:
+  Enabled: false
+
+Style/HashSyntax:
+  Enabled: true
+  EnforcedStyle: ruby19_no_mixed_keys
+
+Style/IndentationConsistency:
+  Enabled: true
+
+Style/IndentationWidth:
+  Enabled: true
+  Width: 2
+
+Style/IndentHash:
+  Enabled: false
+  EnforcedStyle: consistent
+
+Style/InlineComment:
+  Enabled: false
+
+Style/LineEndConcatenation:
+  Enabled: true
+
+Style/MethodName:
+  Enabled: true
+
+Style/MultilineTernaryOperator:
+  Enabled: false
+
+Style/NegatedIf:
+  Enabled: true
+
+Style/Not:
+  Enabled: true
+
+Style/RaiseArgs:
+  Enabled: false
+
+Style/SpaceInsideHashLiteralBraces:
+  Enabled: true
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: single_quotes
+
+Style/TrailingBlankLines:
+  Enabled: true
+
+Style/TrailingWhitespace:
+  Enabled: true
+
+Style/VariableName:
+  Enabled: true
+
+Metrics/LineLength:
+  Description: 'Limit lines to 120 characters.'
+  Max: 120
+
+Style/CollectionMethods:
+  PreferredMethods:
+    collect: 'map'
+    collect!: 'map!'
+    inject: 'reduce'
+    detect: 'find'
+    find_all: 'select'
+
+Style/DotPosition:
+  EnforcedStyle: leading
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: when_needed
+
+# Allow classes longer than 100 lines of code
+ClassLength:
+  Max: 150
