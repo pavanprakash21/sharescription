@@ -1,5 +1,11 @@
 {
   "name": "sharescription",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "materialize-css": "^0.100.2"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "p150 <pavanprakash21@gmail.com>",
+  "license": "MIT"
 }
