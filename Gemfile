@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+ruby '2.4.1'
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
@@ -33,7 +34,7 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   gem 'bullet'
   gem 'bundler-audit'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-rails'
