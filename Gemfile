@@ -31,6 +31,9 @@ gem 'jbuilder', '~> 2.5'
 # Authentication
 gem 'devise'
 
+# Form Builder
+gem 'simple_form'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
