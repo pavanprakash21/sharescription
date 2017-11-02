@@ -23,6 +23,10 @@ describe User, type: :model do
     it { expect(user).not_to allow_value('Abc@ Asd').for(:name) }
   end
 
+  context 'ActiveRecord Associations' do
+    it { expect(user).to have_many(:medical_records) }
+  end
+
   describe 'ActiveRecord databases' do
     it { expect(user).to have_db_column(:email).of_type(:string).with_options(null: false, default: '') }
     it { expect(user).to have_db_column(:name).of_type(:string).with_options(null: false, default: '') }

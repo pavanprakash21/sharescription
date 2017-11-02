@@ -6,6 +6,8 @@ class User < ApplicationRecord
   validates :name, format: { with: /\A[a-zA-Z. ]*\z/, message: 'please use only English alphabets' },
                    length: { in: 4..60 }
 
+  has_many :medical_records, dependent: :destroy
+
   devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable
 end
