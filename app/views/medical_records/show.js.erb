@@ -10,8 +10,6 @@ function decodeEntities(encodedString) {
     return JSON.parse("[" + decodedValue + "]")
 }
 
-console.log(decodeEntities(sentenceArr)[0]);
-
 function appendPrescriptions() {
   modalContentField.empty();
   for (var i = 0; i <= prescriptionsSize; i++) {
