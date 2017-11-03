@@ -11,12 +11,6 @@
   <body>
     <%= render 'shared/navbar' %>
     <div class="container">
-      <% if user_signed_in? %>
-        <h4>Welcome <%= current_user.name %></h4>
-      <% elsif doctor_signed_in? %>
-        <h4>Welcome <%= current_doctor.name %></h4>
-      <% end %>
-
 
       <p class="hide">
         <% flash.each do |key, message| %>
