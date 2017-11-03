@@ -8,7 +8,7 @@ FactoryBot.define do
     morning false
     afternoon false
     night true
-    time { %w[before after].sample }
+    time { %w[before_food after_food].sample }
     medical_record
   end
 end

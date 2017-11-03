@@ -24,7 +24,8 @@ describe User, type: :model do
   end
 
   context 'ActiveRecord Associations' do
-    it { expect(user).to have_many(:medical_records) }
+    it { expect(user).to have_many(:medical_records).dependent(:destroy) }
+    it { expect(user).to have_many(:share_records).dependent(:destroy) }
   end
 
   describe 'ActiveRecord databases' do

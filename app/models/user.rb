@@ -7,6 +7,7 @@ class User < ApplicationRecord
                    length: { in: 4..60 }
 
   has_many :medical_records, dependent: :destroy
+  has_many :share_records, dependent: :destroy
 
   devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable

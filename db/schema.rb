@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171102180912) do
+ActiveRecord::Schema.define(version: 20171103222849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,20 @@ ActiveRecord::Schema.define(version: 20171102180912) do
     t.index ["medical_record_id"], name: "index_prescriptions_on_medical_record_id"
   end
 
+  create_table "share_records", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.boolean "shared", default: false, null: false
+    t.uuid "user_id"
+    t.uuid "medical_record_id"
+    t.string "shareable_type"
+    t.uuid "shareable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["medical_record_id"], name: "index_share_records_on_medical_record_id"
+    t.index ["shareable_type", "shareable_id"], name: "index_share_records_on_shareable_type_and_shareable_id"
+    t.index ["shared"], name: "index_share_records_on_shared", where: "shared"
+    t.index ["user_id"], name: "index_share_records_on_user_id"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -111,4 +125,6 @@ ActiveRecord::Schema.define(version: 20171102180912) do
 
   add_foreign_key "medical_records", "users"
   add_foreign_key "prescriptions", "medical_records"
+  add_foreign_key "share_records", "medical_records"
+  add_foreign_key "share_records", "users"
 end
