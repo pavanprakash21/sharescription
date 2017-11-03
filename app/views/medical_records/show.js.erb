@@ -1,0 +1,13 @@
+var modalContentField = $('#js-prescriptions')
+
+var prescriptionsSize = Number('<%= @medical_record.prescriptions.size %>')
+var sentenceArray = <%= raw prescriptions_sentences_from(@medical_record) %>
+
+var appendPrescriptions = function() {
+  modalContentField.empty();
+  for (var i = 0; i <= prescriptionsSize; i++) {
+    modalContentField.append('<div class="">', sentenceArray[i], '</div>');
+  }
+};
+
+appendPrescriptions();

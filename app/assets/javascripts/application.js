@@ -20,15 +20,15 @@
 $(document).ready(function() {
     // Since materializecss overrides browser defaults, include this function
     $('select').material_select();
+    $('#prescription-modal').modal();
 });
 
 $(document).ready(function(){
   $('#js-showPassword').on('click', function(){
     var passwordField = $('#password');
-    console.log(passwordField.attr('type'))
     var passwordFieldType = passwordField.attr('type');
-    if(passwordFieldType === 'password')
-    {
+
+    if (passwordFieldType === 'password') {
         passwordField.attr('type', 'text');
     } else {
         passwordField.attr('type', 'password');

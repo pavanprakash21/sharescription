@@ -1,1 +1,52 @@
-<%= link_to 'Create a new record', new_medical_record_path %>
+<h3 class="teal-text center">Your Medical Records</h3>
+
+<%= button_to new_medical_record_path, class: 'btn waves-effect waves-light right' do %>
+  New Record
+  <i class="material-icons right">create_new_folder</i>
+<% end %>
+
+<table class="responsive-table highlight">
+    <thead>
+      <tr>
+        <th colspan="2">Name</th>
+        <th colspan="6">Notes</th>
+        <th colspan="2">Number of prescriptions</th>
+        <th colspan="1"></th>
+        <th colspan="1"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @medical_records.each do |record| %>
+      <tr>
+        <td colspan="2"><%= link_to record.name, record %></td>
+        <td colspan="6"><%= record.notes %></td>
+        <td colspan="2"><%= record.prescriptions.size %></td>
+        <td colspan="1">
+          <%= link_to '#prescription-modal', id: record.id, class: 'modal-trigger' do %>
+            <div class='btn btn-floating teal'><i class="material-icons" data-id=<%= record.id %>>expand_more</i></div>
+          <% end %>
+        </td>
+        <td colspan="1">
+          <%= link_to do %>
+            <div class='btn btn-floating teal'><i class="material-icons">share</i></div>
+          <% end %>
+        </td>
+        <td colspan="1">
+          <%= link_to edit_medical_record_path(record) do %>
+            <div class='btn btn-floating'><i class="material-icons">edit</i></div>
+          <% end %>
+        </td>
+        <td colspan="1">
+          <%= link_to medical_record_path(record), method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <div class='btn btn-floating grey'><i class="material-icons">delete</i></div>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div id="prescription-modal" class="modal bottom-sheet">
+  <div class="modal-content" id="js-prescriptions"></div>
+</div>

@@ -2,6 +2,7 @@
   "name": "sharescription",
   "private": true,
   "dependencies": {
+    "material-icons": "^0.1.0",
     "materialize-css": "^0.100.2"
   },
   "version": "1.0.0",
