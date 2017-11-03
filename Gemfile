@@ -32,7 +32,11 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 
 # Form Builder
+gem 'cocoon'
 gem 'simple_form'
+
+# Enumerator
+gem 'enumerize'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

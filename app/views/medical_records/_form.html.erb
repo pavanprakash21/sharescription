@@ -17,7 +17,20 @@
     </div>
 
     <div class="input-field col s12">
-      <%= f.input :notes, placeholder: 'You can enter some notes here for your future reference' %>
+      <%= f.input :notes, placeholder: 'You can enter some notes here for your future reference', input_html: { class: 'materialize-textarea' } %>
+    </div>
+  </div>
+
+  <h6>Add prescriptions for this medical record below</h6>
+  <br>
+
+  <div id="prescriptions">
+    <%= f.simple_fields_for :prescriptions do |prescription| %>
+      <%= render 'prescription_fields', f: prescription %>
+    <% end %>
+
+    <div class="links">
+      <%= link_to_add_association 'Add a prescription', f, :prescriptions %>
     </div>
   </div>
 

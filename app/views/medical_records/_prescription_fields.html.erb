@@ -1,0 +1,45 @@
+<div class="nested-fields">
+
+  <div class="remove-association right">
+    <%= link_to_remove_association 'remove prescription', f %>
+  </div>
+
+  <div class="row">
+    <div class="col s12">
+      <div class="row">
+
+        <div class="col s12 m4 l4">
+          <%= f.input :name, required: true, hint: 'Please enter a name for this prescription' %>
+        </div>
+
+        <div class="col s6 m4 l3">
+          <%= f.input :dosage, required: true, hint: 'How much should you take of this at once?' %>
+        </div>
+
+        <div class="col s6 m4 l2">
+          <%= f.input :dosage_unit, required: true, prompt: "Select the dosage unit", input_html: { class: 'checkbox' }, label: 'Units' %>
+        </div>
+
+        <div class="col s4 m4 l3">
+          <%= f.input :time, required: true, label: 'When should you take this?' %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s4 m4">
+          <%= f.input :morning, as: :boolean, boolean_style: :inline %>
+        </div>
+
+        <div class="col s4 m4">
+          <%= f.input :afternoon, as: :boolean, boolean_style: :inline %>
+        </div>
+
+        <div class="col s4 m4">
+          <%= f.input :night, as: :boolean, boolean_style: :inline %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

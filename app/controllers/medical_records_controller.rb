@@ -15,6 +15,7 @@ class MedicalRecordsController < ApplicationController
   def new
     return unless user_signed_in?
     @medical_record = current_user.medical_records.new
+    @prescription = @medical_record.prescriptions.build
   end
 
   def create
@@ -39,6 +40,7 @@ class MedicalRecordsController < ApplicationController
   end
 
   def medical_record_params
-    params.require(:medical_record).permit(:name, :notes)
+    params.require(:medical_record).permit(:name, :notes,
+      prescriptions_attributes: %i[id name dosage dosage_unit morning afternoon night time _destroy])
   end
 end

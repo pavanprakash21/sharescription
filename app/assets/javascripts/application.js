@@ -13,7 +13,14 @@
 //= require rails-ujs
 //= require jquery/dist/jquery.min
 //= require materialize-css/dist/js/materialize.min
+//= require cocoon
 //= require_tree .
+
+// Functions related to material design
+$(document).ready(function() {
+    // Since materializecss overrides browser defaults, include this function
+    $('select').material_select();
+});
 
 $(document).ready(function(){
   $('#js-showPassword').on('click', function(){
