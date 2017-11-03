@@ -1,17 +1,36 @@
-<h2>Sign up</h2>
+<div class="row">
+  <div class="col s12 m10 l4 offset-m1 offset-l4">
+    <h4 class="teal-text center">Sign up</h4>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <h4><%= f.error_notification %></h4>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, required: true %>
+      <div class="form-inputs">
+        <div class="row">
+          <div class="col s12">
+            <%= f.input :name, required: true, autofocus: true, placeholder: 'Please enter your full name', class: "white-text" %>
+          </div>
+          <div class="col s12">
+            <%= f.input :email, required: true, placeholder: 'Please enter a valid email' %>
+          </div>
+          <div class="col s12 password-container">
+            <%= f.input :password, required: true, placeholder: 'Click the Show button to reveal the password', input_html: { id: 'password' } %>
+            <div class="password-toggle">
+              <input type="checkbox" id="js-showPassword" />
+              <label for="js-showPassword" id="js-showPassword">Show</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions bottom-pad-button">
+        <%= f.button :submit, "Sign up" %>
+        <div class="right">
+          <%= link_to "Log in", new_doctor_session_path, class: 'waves-effect waves-teal btn-flat flat-button' %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= render "doctors/shared/links" %>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "doctors/shared/links" %>
+</div>
