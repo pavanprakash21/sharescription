@@ -1,12 +1,21 @@
 var modalContentField = $('#js-prescriptions')
 
 var prescriptionsSize = Number('<%= @medical_record.prescriptions.size %>')
-var sentenceArray = <%= raw prescriptions_sentences_from(@medical_record) %>
+var sentenceArr = '<%= prescriptions_sentences_from(@medical_record) %>'
 
-var appendPrescriptions = function() {
+function decodeEntities(encodedString) {
+    var textArea = document.createElement('textarea');
+    textArea.innerHTML = encodedString;
+    var decodedValue = textArea.value;
+    return JSON.parse("[" + decodedValue + "]")
+}
+
+console.log(decodeEntities(sentenceArr)[0]);
+
+function appendPrescriptions() {
   modalContentField.empty();
   for (var i = 0; i <= prescriptionsSize; i++) {
-    modalContentField.append('<div class="">', sentenceArray[i], '</div>');
+    modalContentField.append('<div class="">', decodeEntities(sentenceArr)[0][i], '</div>');
   }
 };
 
