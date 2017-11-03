@@ -1,0 +1,25 @@
+<div id="error_explanation">
+  <% if @medical_record.errors.any? %>
+  <h2><%= pluralize(@medical_record.errors.count, "error") %>
+  prohibited this medical_record from being saved:</h2>
+  <ul>
+    <% @medical_record.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+  <% end %>
+</div>
+
+<%= simple_form_for @medical_record do |f| %>
+  <div class="row">
+    <div class="input-field col s12">
+      <%= f.input :name, autofocus: true, required: true, placeholder: 'Please enter a name for your medical record' %>
+    </div>
+
+    <div class="input-field col s12">
+      <%= f.input :notes, placeholder: 'You can enter some notes here for your future reference' %>
+    </div>
+  </div>
+
+    <%= f.submit "Submit", class: 'center-align btn waves-effect waves-light' %>
+<% end %>
