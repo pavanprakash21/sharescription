@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class MedicalRecordsController < ApplicationController
-  before_action :find_medical_record, only: :show
   before_action :authenticate_user!, only: %i[new create]
+  before_action :find_medical_record, only: %i[show edit update destroy]
 
   def index
     @medical_records = if user_signed_in?
@@ -22,7 +22,7 @@ class MedicalRecordsController < ApplicationController
     @medical_record = current_user.medical_records.new(medical_record_params)
     if @medical_record.save
       respond_to do |format|
-        format.html { redirect_to @medical_record, success: 'Your medical record has been saved' }
+        format.html { redirect_to medical_records_path, success: 'Your medical record has been saved' }
       end
     else
       respond_to do |format|
@@ -32,6 +32,25 @@ class MedicalRecordsController < ApplicationController
   end
 
   def show; end
+
+  def edit; end
+
+  def update
+    respond_to do |format|
+      if @medical_record.update(medical_record_params)
+        format.html { redirect_to medical_records_path, success: 'Your medical record has been updated' }
+      else
+        format.html { render :edit, notice: 'Your medical record has not been updated' }
+      end
+    end
+  end
+
+  def destroy
+    @medical_record.destroy
+    respond_to do |format|
+      format.html { redirect_to medical_records_path, notice: 'Your medical record has been updated' }
+    end
+  end
 
   private
 
