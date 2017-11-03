@@ -19,7 +19,9 @@
       <% @medical_records.each do |record| %>
       <tr>
         <td colspan="2"><%= link_to record.name, record %></td>
-        <td colspan="6"><%= record.notes %></td>
+        <td colspan="6" class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="<%= record.notes %>">
+          <%= truncate(record.notes) %>
+        </td>
         <td colspan="2"><%= record.prescriptions.size %></td>
         <td colspan="1">
           <%= link_to '#prescription-modal', id: record.id, class: 'modal-trigger' do %>

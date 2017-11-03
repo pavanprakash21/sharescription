@@ -21,6 +21,7 @@ $(document).ready(function() {
     // Since materializecss overrides browser defaults, include this function
     $('select').material_select();
     $('#prescription-modal').modal();
+    $('.tooltipped').tooltip();
 });
 
 $(document).ready(function(){
