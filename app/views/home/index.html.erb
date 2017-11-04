@@ -1,1 +1,43 @@
-<h1>Welcome to Sharescription</h1>
+<div class="row">
+  <h1 class="center teal-text">Welcome to Sharescription</h1>
+</div>
+
+<div class="row">
+
+  <div class="col s12 m6 l3">
+    <div class="card">
+      <div class="card-content green white-text">
+        <p class="card-stats-title center">Number of Medical Records</p>
+        <h4 class="card-stats-number center"><%= @data[:total_medical_records] %></h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s12 m6 l3">
+    <div class="card">
+      <div class="card-content green white-text">
+        <p class="card-stats-title center">Total Number of Prescriptions</p>
+        <h4 class="card-stats-number center"><%= @data[:total_presriptions] %></h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s12 m6 l3">
+    <div class="card">
+      <div class="card-content green white-text">
+        <p class="card-stats-title center">Shared records with Doctors</p>
+        <h4 class="card-stats-number center"><%= @data[:total_doctor_shared_records] %></h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s12 m6 l3">
+    <div class="card">
+      <div class="card-content green white-text">
+        <p class="card-stats-title center">Shared records with Pharmacists</p>
+        <h4 class="card-stats-number center"><%= @data[:total_pharma_shared_records] %></h4>
+      </div>
+    </div>
+  </div>
+
+</div>

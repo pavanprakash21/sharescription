@@ -7,6 +7,9 @@ class ShareRecord < ApplicationRecord
 
   validates :medical_record_id, uniqueness: { scope: %i[shareable_id shareable_type] }
 
+  scope :doctor_records, -> { where(shareable_type: 'Doctor') }
+  scope :pharma_records, -> { where(shareable_type: 'Pharmacist') }
+
   def safe_toggle(attr)
     public_send(attr) == true ? update(:"#{attr}" => false) : update(:"#{attr}" => true)
   end

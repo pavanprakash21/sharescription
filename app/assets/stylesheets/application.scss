@@ -9,6 +9,7 @@ $bg-color: color('teal', 'lighten-2') !default;
 
 // Import our codes
 @import "medical_records";
+@import "share_records";
 
 .push-center {
   padding-left: 15%;
@@ -53,4 +54,15 @@ $bg-color: color('teal', 'lighten-2') !default;
 
 .toast-notice {
   background-color: #0099CC;
+}
+
+.card-stats-number {
+  font-size: 1.8rem;
+  line-height: 2.0rem;
+  margin: 0.2rem 0 0.2rem 0;
+  font-weight: 500;
+}
+
+.card-stats-title {
+  font-size: 1.1rem;
 }
