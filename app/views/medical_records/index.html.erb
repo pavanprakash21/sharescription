@@ -1,32 +1,39 @@
-<h3 class="teal-text center">Your Medical Records</h3>
+<div class="row">
+  <h3 class="teal-text center">Your Medical Records</h3>
+</div>
 
-<%= link_to new_medical_record_path, class: 'waves-effect waves-light btn right' do %>
-  New Record
-  <i class="material-icons right">create_new_folder</i>
-<% end %>
+<div class="row">
+  <%= link_to new_medical_record_path, class: 'waves-effect waves-light btn right hide-on-med-and-down' do %>
+    New Record
+    <i class="material-icons right">create_new_folder</i>
+  <% end %>
+</div>
 
-<table class="responsive-table highlight">
+<div class="row">
+  <table class="responsive-table highlight">
     <thead>
       <tr>
-        <th colspan="2">Name</th>
-        <th colspan="6">Notes <small>You can hover over the notes to get full information</small></th>
-        <th colspan="2">Number of prescriptions</th>
-        <th colspan="1"></th>
-        <th colspan="1"></th>
+        <th colspan="2" class="center">Name</th>
+        <th colspan="4" class="center">Notes</th>
+        <th colspan="2" class="center"># of Prescriptions</th>
+        <th colspan="1" class="center">Details</th>
+        <th colspan="1" class="center">Share</th>
+        <th colspan="1" class="center">Edit</th>
+        <th colspan="1" class="center">Delete</th>
       </tr>
     </thead>
     <tbody>
       <% @medical_records.each do |record| %>
       <tr>
-        <td colspan="2"><%= record.name.titleize %></td>
+        <td colspan="2" class="center"><%= record.name.titleize %></td>
 
-        <td colspan="6" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="<%= record.notes %>">
-          <%= truncate(record.notes) %>
+        <td colspan="4" class="tooltipped center" data-position="bottom" data-delay="10" data-tooltip="<%= record.notes.humanize %>">
+          <%= truncate(record.notes.humanize) %>
         </td>
 
-        <td colspan="2"><%= record.prescriptions.size %></td>
+        <td colspan="2" class="center"><%= record.prescriptions.size %></td>
 
-        <td colspan="1">
+        <td colspan="1" class="center">
           <%= link_to '#prescription-modal', id: record.id, class: 'modal-trigger' do %>
             <div class='btn btn-floating teal' id="js-prescription-onclick">
               <i class="material-icons" data-id=<%= record.id %> data-token="<%= session[:_csrf_token] %>">expand_more</i>
@@ -34,7 +41,7 @@
           <% end %>
         </td>
 
-        <td colspan="1">
+        <td colspan="1" class="center">
           <%= link_to '#share-modal', id: record.id, class: 'modal-trigger' do %>
             <div class='btn btn-floating teal' id="js-share-onclick">
               <i class="material-icons" data-id=<%= record.id %>>share</i>
@@ -42,13 +49,13 @@
           <% end %>
         </td>
 
-        <td colspan="1">
+        <td colspan="1" class="center">
           <%= link_to edit_medical_record_path(record) do %>
             <div class='btn btn-floating'><i class="material-icons">edit</i></div>
           <% end %>
         </td>
 
-        <td colspan="1">
+        <td colspan="1" class="center">
           <%= link_to medical_record_path(record), method: :delete, data: { confirm: 'Are you sure?' } do %>
             <div class='btn btn-floating grey'><i class="material-icons">delete</i></div>
           <% end %>
@@ -58,6 +65,15 @@
     <% end %>
     </tbody>
   </table>
+</div>
+
+<div class="row">
+  <div class="col s12">
+    <%= link_to new_medical_record_path, class: 'waves-effect waves-light btn right hide-on-large-only' do %>
+      New Record
+      <i class="material-icons right">create_new_folder</i>
+    <% end %>
+  </div>
 </div>
 
 <div id="prescription-modal" class="modal bottom-sheet">

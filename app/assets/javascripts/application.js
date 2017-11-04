@@ -20,7 +20,9 @@
 $(document).ready(function() {
     // Since materializecss overrides browser defaults, include this function
     $('select').material_select();
-    $('.tooltipped').tooltip();
+    $('.tooltipped').tooltip({
+      delay: 500
+    });
 });
 
 $(document).ready(function(){
