@@ -30,6 +30,25 @@ $(document).ready(function() {
         clearRendered();
       }
     })
+
+    $('#js-share-temp-revoke > i').on('click', function(){
+      var id = $(this).data('id');
+      $.ajax({
+        url: '/share_records/' + id + '/temp_revoke',
+        type: 'PATCH',
+        success: function(data) {
+          if (data.visible === false) {
+            $('#js-share-temp-revoke > i[data-id='+ id + ']#js-visibility-filter').text('visibility_off')
+          } else if (data.visible === true) {
+            $('#js-share-temp-revoke > i[data-id='+ id + ']#js-visibility-filter').text('visibility')
+          }
+          Materialize.toast(data.message, 4000, 'toast-flash toast-success')
+        },
+        error: function(data) {
+          Materialize.toast(data.responseJSON.message, 4000, 'toast-flash toast-error')
+        }
+      });
+    });
 });
 
 function renderShareText(val) {

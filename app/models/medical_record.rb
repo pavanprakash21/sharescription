@@ -6,7 +6,7 @@ class MedicalRecord < ApplicationRecord
   belongs_to :user
 
   has_many :prescriptions, dependent: :destroy, inverse_of: :medical_record
-  has_many :shared_records, dependent: :destroy
+  has_many :share_records, dependent: :destroy
 
   accepts_nested_attributes_for :prescriptions, reject_if: :all_blank, allow_destroy: true
 end

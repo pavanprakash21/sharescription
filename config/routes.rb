@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   devise_for :pharmacists
 
   resources :medical_records
-  resources :share_records, only: %i[index create]
+  resources :share_records, only: %i[index create] do
+    patch :temp_revoke, on: :member
+  end
 
   get '/search/suggestions', to: 'search#index'
   get '/search', to: 'search#search', as: :search
