@@ -15,7 +15,9 @@ class ShareRecordsController < ApplicationController
       end
     else
       respond_to do |format|
-        format.json { render json: { message: 'Record has been successfully shared' }, status: 400 }
+        format.json do
+          render json: { errors: share_record.errors, message: 'This record has already been shared' }, status: 400
+        end
       end
     end
   end

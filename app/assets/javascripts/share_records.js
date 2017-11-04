@@ -19,18 +19,26 @@ $(document).ready(function() {
       });
       $('#share-modal').modal({dismissible: false});
     });
+
     $('#js-close-modal').on('click', function() {
       $('#share-modal').modal('close');
     });
+
+    $('input.autocomplete').on('change paste keyup', function() {
+      var value = $(this).val()
+      if (value.length == 0) {
+        clearRendered();
+      }
+    })
 });
 
 function renderShareText(val) {
-  $('#js-confirm-share-prompt-text').text('This record will be shared with ' + val.name + ' (' + val.class + '). Are you sure? You can always revoke permissions by going to the shared records tab.');
+  $('#js-confirm-share-prompt-text').unbind().text('This record will be shared with ' + val.name + ' (' + val.class + '). Are you sure? You can always revoke permissions by going to the shared records tab.');
 }
 
 function renderShareButtons() {
-  $('#js-confirm-share-prompt-response').append(
-    '<br/><div class="col s3"></div><div class="col s3"><div class="btn btn-floating teal"><i class="material-icons" id="js-share-confirm">check</i></div></div><div class="col s3"><div class="btn btn-floating teal"><i class="material-icons" id="js-share-cancel">cancel</i></div></div><div class="col s3"></div>'
+  $('#js-confirm-share-prompt-response').unbind().append(
+    '<div id="js-wrapped-append"><br/><div class="col s3"></div><div class="col s3"><div class="btn btn-floating teal"><i class="material-icons" id="js-share-confirm">check</i></div></div><div class="col s3"><div class="btn btn-floating teal"><i class="material-icons" id="js-share-cancel">cancel</i></div></div><div class="col s3"></div></div>'
   );
 }
 
@@ -46,8 +54,10 @@ function renderAndShare(val, medicalRecordId) {
 }
 
 function clearRendered() {
+  $('#js-confirm-share-prompt-text').children().unbind();
+  $('#js-confirm-share-prompt-response').children().unbind();
+  $('#js-wrapped-append').remove();
   $('#js-confirm-share-prompt-text').empty();
-  $('#js-confirm-share-prompt-response').empty();
   $('input.autocomplete').val('');
 }
 
@@ -63,15 +73,15 @@ function postShareData(val, medicalRecordId) {
       }
     },
     success: function(data) {
-      renderToastAndCloseModal(data);
+      renderToastAndCloseModal(data.message, 'success');
     },
     error: function(data) {
-      renderToastAndCloseModal(data);
+      renderToastAndCloseModal(data.responseJSON.message, 'error');
     }
   });
 }
 
-function renderToastAndCloseModal(data) {
-  Materialize.toast(data.message, 4000);
+function renderToastAndCloseModal(data, respStatus) {
+  Materialize.toast(data, 4000, 'toast-flash toast-'+ respStatus);
   $('#share-modal').modal('close');
 }

@@ -34,3 +34,23 @@ $bg-color: color('teal', 'lighten-2') !default;
   border: 0.1rem solid $primary-color;
   border-radius: 0.3rem;
 }
+
+.toast-flash {
+  border-radius: 0.5rem;
+}
+
+.toast-success {
+  background-color: #007E33;
+}
+
+.toast-error {
+  background-color: #CC0000;
+}
+
+.toast-alert {
+  background-color: #FF8800;
+}
+
+.toast-notice {
+  background-color: #0099CC;
+}
