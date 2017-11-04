@@ -1,0 +1,41 @@
+<h3 class="teal-text center">Your Shared Records</h3>
+
+<table class="responsive-table highlight">
+    <thead>
+      <tr>
+        <th colspan="2" class="center">Name</th>
+        <th colspan="6" class="center">Shared With</th>
+        <th colspan="1" class="center">Revoke Permission Temporarily</th>
+        <th colspan="1" class="center">Revoke Permission Permanently</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @share_records.each do |record| %>
+      <tr>
+        <td colspan="2" class="center"><%= record.medical_record.name.titleize %></td>
+
+        <td colspan="6" class="center">
+          <%= record.shareable.name %> ( <%= record.shareable.class.name %> )
+        </td>
+
+        <td colspan="1" class="center">
+          <%= link_to '#', id: record.id, class: 'modal-trigger' do %>
+            <div class='btn btn-floating orange' id="js-share-temp-revoke">
+              <i class="material-icons" data-id=<%= record.id %>>visibility_off</i>
+            </div>
+          <% end %>
+        </td>
+
+        <td colspan="1" class="center">
+          <%= link_to '#', id: record.id, class: 'modal-trigger' do %>
+            <div class='btn btn-floating grey' id="js-share-perm-revoke">
+              <i class="material-icons" data-id=<%= record.id %>>delete_forever</i>
+            </div>
+          <% end %>
+        </td>
+
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

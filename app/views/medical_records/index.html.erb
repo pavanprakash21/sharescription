@@ -19,10 +19,13 @@
       <% @medical_records.each do |record| %>
       <tr>
         <td colspan="2"><%= record.name.titleize %></td>
+
         <td colspan="6" class="tooltipped" data-position="bottom" data-delay="10" data-tooltip="<%= record.notes %>">
           <%= truncate(record.notes) %>
         </td>
+
         <td colspan="2"><%= record.prescriptions.size %></td>
+
         <td colspan="1">
           <%= link_to '#prescription-modal', id: record.id, class: 'modal-trigger' do %>
             <div class='btn btn-floating teal' id="js-prescription-onclick">
@@ -30,6 +33,7 @@
             </div>
           <% end %>
         </td>
+
         <td colspan="1">
           <%= link_to '#share-modal', id: record.id, class: 'modal-trigger' do %>
             <div class='btn btn-floating teal' id="js-share-onclick">
@@ -37,16 +41,19 @@
             </div>
           <% end %>
         </td>
+
         <td colspan="1">
           <%= link_to edit_medical_record_path(record) do %>
             <div class='btn btn-floating'><i class="material-icons">edit</i></div>
           <% end %>
         </td>
+
         <td colspan="1">
           <%= link_to medical_record_path(record), method: :delete, data: { confirm: 'Are you sure?' } do %>
             <div class='btn btn-floating grey'><i class="material-icons">delete</i></div>
           <% end %>
         </td>
+
       </tr>
     <% end %>
     </tbody>

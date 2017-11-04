@@ -4,7 +4,7 @@ class ShareRecordsController < ApplicationController
   skip_before_action :verify_authenticity_token, if: :json_request?, only: :create
 
   def index
-    @share_records = current_user.share_records.order(created_at: :desc)
+    @share_records = current_user.share_records.includes(:medical_record, :shareable).order(created_at: :desc)
   end
 
   def create
