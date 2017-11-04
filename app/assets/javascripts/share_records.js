@@ -49,6 +49,21 @@ $(document).ready(function() {
         }
       });
     });
+
+    $('#js-share-perm-revoke > i').on('click', function() {
+      var id = $(this).data('id');
+      $.ajax({
+        url: '/share_records/' + id,
+        type: 'DELETE',
+        success: function(data) {
+          Materialize.toast('Permission on the record has been revoked successfully', 4000, 'toast-flash toast-success')
+          $('#js-share-perm-revoke > i[data-id='+ id + ']#js-share-delete').parent().parent().parent().parent().remove();
+        },
+        error: function(data) {
+          Materialize.toast(data.responseJSON.message, 4000, 'toast-flash toast-error')
+        }
+      });
+    });
 });
 
 function renderShareText(val) {

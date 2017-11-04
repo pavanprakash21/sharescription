@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ShareRecordsController < ApplicationController
-  skip_before_action :verify_authenticity_token, if: :json_request?, only: %i[create temp_revoke]
+  skip_before_action :verify_authenticity_token, if: :json_request?, only: %i[create temp_revoke destroy]
   before_action :authenticate_user!, only: %i[new create]
 
   def index
@@ -27,6 +27,16 @@ class ShareRecordsController < ApplicationController
     share_record = current_user.share_records.find(params[:id])
     if share_record.safe_toggle(:shared)
       render json: { message: 'Permission has been toggled successfully', visible: share_record.shared? }, status: 200
+    else
+      render json:   { errors: share_record.errors, message: 'Something went wrong. Please try again or contact us' },
+             status: 400
+    end
+  end
+
+  def destroy
+    share_record = current_user.share_records.find(params[:id])
+    if share_record.destroy
+      render json: { message: '' }, status: 204
     else
       render json:   { errors: share_record.errors, message: 'Something went wrong. Please try again or contact us' },
              status: 400

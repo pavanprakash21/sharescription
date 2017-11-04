@@ -29,7 +29,7 @@
         <td colspan="1" class="center">
           <%= link_to '#', id: record.id, class: 'modal-trigger' do %>
             <div class='btn btn-floating grey' id="js-share-perm-revoke">
-              <i class="material-icons" data-id=<%= record.id %>>delete_forever</i>
+              <i class="material-icons" data-id=<%= record.id %> id="js-share-delete">delete_forever</i>
             </div>
           <% end %>
         </td>

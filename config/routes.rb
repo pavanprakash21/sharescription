@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   devise_for :pharmacists
 
   resources :medical_records
-  resources :share_records, only: %i[index create] do
+  resources :share_records, only: %i[index create destroy] do
     patch :temp_revoke, on: :member
   end
 
