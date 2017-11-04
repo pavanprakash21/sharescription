@@ -15,5 +15,7 @@ class HomeController < ApplicationController
         total_pharma_shared_records: total_pharma_shared_records
       }
     end
+  else
+    #
   end
 end
