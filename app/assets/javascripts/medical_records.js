@@ -4,11 +4,12 @@
 // Call an ajax function to get the details of the prescriptions from the medical record.
 // ID of the medical record will be taken from data-id attribute of the icon.
 $(document).ready(function() {
-    $('i').on('click', function(){
-      var id = $(this).data('id');
-      $.ajax({
-        url: '/medical_records/' + id,
-        type: 'GET',
-      });
+  $('#js-prescription-onclick > i').on('click', function(){
+    var id = $(this).data('id');
+    $.ajax({
+      url: '/medical_records/' + id,
+      type: 'GET'
     });
+    $('#prescription-modal').modal();
+  });
 });

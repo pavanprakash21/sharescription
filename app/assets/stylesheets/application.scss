@@ -1,3 +1,4 @@
+// Import libraries
 @import "material-icons/css/material-icons";
 @import "materialize-css/sass/components/color";
 $primary-color: color('teal', 'darken-3') !default;
@@ -5,6 +6,9 @@ $secondary-color: color('orange', 'base') !default;
 $link-color: color('blue', 'darken-2') !default;
 $bg-color: color('teal', 'lighten-2') !default;
 @import "materialize-css/sass/materialize";
+
+// Import our codes
+@import "medical_records";
 
 .push-center {
   padding-left: 15%;
