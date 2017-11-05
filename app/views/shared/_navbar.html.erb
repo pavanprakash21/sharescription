@@ -4,15 +4,17 @@
       <div class="push-center">
         <%= link_to 'Sharescription', root_path, class: 'brand-logo' %>
       </div>
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse">
+        <i class="material-icons">menu</i>
+      </a>
       <div class="th-nav">
-      <ul class="right hide-on-med-and-down">
+        <ul class="right hide-on-med-and-down">
+          <%= render 'shared/navlinks' %>
+        </ul>
+      </div>
+      <ul class="side-nav" id="mobile-demo">
         <%= render 'shared/navlinks' %>
       </ul>
-      </div>
     </div>
-    <ul class="side-nav" id="mobile-demo">
-      <%= render 'shared/navlinks' %>
-    </ul>
   </nav>
 </div>
