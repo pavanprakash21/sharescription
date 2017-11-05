@@ -1,0 +1,54 @@
+<div class="row center">
+  <div class="col s6 left legend">
+    <i class="material-icons">visibility</i>
+    <span>Permitted</span>
+  </div>
+  <div class="col s6 right legend">
+    <i class="material-icons">visibility_off</i>
+    <span>Not Permitted</span>
+  </div>
+</div>
+</div>
+
+<div class="row">
+<table class="responsive-table highlight">
+  <thead>
+    <tr>
+      <th colspan="2" class="center">Name</th>
+      <th colspan="6" class="center">Shared With</th>
+      <th colspan="2" class="center">Toggle Permission Temporarily</th>
+      <th colspan="2" class="center">Delete this shared record</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% share_records.each do |record| %>
+    <tr>
+      <td colspan="2" class="center"><%= record.medical_record.name.titleize %></td>
+
+      <td colspan="6" class="center">
+        <%= record.shareable.name %>
+        (
+        <%= record.shareable.class.name %>
+        )
+      </td>
+
+      <td colspan="2" class="center">
+        <%= link_to '#', id: record.id, class: 'modal-trigger' do %>
+        <div class='btn btn-floating orange' id="js-share-temp-revoke">
+          <i class="material-icons" data-id=<%= record.id %> id="js-visibility-filter"><%= visibility_icon(record) %></i>
+        </div>
+        <% end %>
+      </td>
+
+      <td colspan="2" class="center">
+        <%= link_to '#', id: record.id, class: 'modal-trigger' do %>
+        <div class='btn btn-floating grey' id="js-share-perm-revoke">
+          <i class="material-icons" data-id=<%= record.id %> id="js-share-delete">delete_forever</i>
+        </div>
+        <% end %>
+      </td>
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>
