@@ -3,6 +3,8 @@
 Rails.application.routes.draw do
   root 'home#index'
 
+  mount ActionCable.server => '/cable'
+
   devise_for :users
   devise_for :doctors
   devise_for :pharmacists

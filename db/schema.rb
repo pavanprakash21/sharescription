@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171105123025) do
+ActiveRecord::Schema.define(version: 20171105132347) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(version: 20171105123025) do
     t.string "action", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.uuid "medical_record_id"
+    t.index ["medical_record_id"], name: "index_notifications_on_medical_record_id"
     t.index ["recepient_type", "recepient_id"], name: "index_notifications_on_recepient_type_and_recepient_id"
     t.index ["sender_type", "sender_id"], name: "index_notifications_on_sender_type_and_sender_id"
   end
@@ -138,6 +140,7 @@ ActiveRecord::Schema.define(version: 20171105123025) do
   end
 
   add_foreign_key "medical_records", "users"
+  add_foreign_key "notifications", "medical_records"
   add_foreign_key "prescriptions", "medical_records"
   add_foreign_key "share_records", "medical_records"
   add_foreign_key "share_records", "users"
