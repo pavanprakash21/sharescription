@@ -5,6 +5,7 @@ FactoryBot.define do
     sender
     recepient
     medical_record
+    share_record
     action 'shared'
   end
 end
