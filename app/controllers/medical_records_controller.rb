@@ -12,6 +12,11 @@ class MedicalRecordsController < ApplicationController
                        end
   end
 
+  def dorp_index
+    @user = User.find(params[:user_id])
+    @medical_records = MedicalRecord.where(user: @user)
+  end
+
   def new
     return unless user_signed_in?
     @medical_record = current_user.medical_records.new

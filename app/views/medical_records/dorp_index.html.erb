@@ -1,0 +1,11 @@
+<div class="row">
+  <h3 class="teal-text center"><%= @user.name %>'s Medical Records</h3>
+</div>
+
+<div class="row">
+  <% if @medical_records.present? %>
+    <%= render 'dorp_table', medical_records: @medical_records %>
+  <% else %>
+    <%= render 'no_records_found', user: @user %>
+  <% end %>
+</div>

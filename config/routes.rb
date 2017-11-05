@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   devise_for :doctors
   devise_for :pharmacists
 
-  resources :medical_records
+  resources :medical_records do
+    get '/dp/:user_id', action: :dorp_index, on: :collection, as: :dorp
+  end
+
   resources :share_records, only: %i[index create destroy] do
     patch :temp_revoke, on: :member
   end

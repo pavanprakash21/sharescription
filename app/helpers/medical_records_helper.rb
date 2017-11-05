@@ -43,4 +43,9 @@ module MedicalRecordsHelper
   def time_to_sentence(prescription)
     prescription.time.humanize(capitalize: false)
   end
+
+  def dorp_visibility_icon(record)
+    current_resource = current_doctor ? current_doctor : current_pharmacist
+    record.share_records.exists?(shareable: current_resource) ? 'visibility' : 'visibility_off'
+  end
 end

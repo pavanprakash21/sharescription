@@ -1,0 +1,29 @@
+<div class="row">
+  <table class="responsive-table highlight">
+    <thead>
+      <tr>
+        <th colspan="4" class="center">Name</th>
+        <th colspan="4" class="center"># of Prescriptions</th>
+        <th colspan="4" class="center">View Permission</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% medical_records.each do |record| %>
+      <tr>
+        <td colspan="4" class="center"><%= record.name.titleize %></td>
+
+        <td colspan="4" class="center"><%= record.prescriptions.size %></td>
+
+        <td colspan="4" class="center">
+          <%= link_to '#', id: record.id, class: 'modal-trigger' do %>
+          <div class='btn btn-floating orange' id="js-share-temp-revoke">
+            <i class="material-icons" data-id=<%= record.id %> id="js-visibility-filter"><%= dorp_visibility_icon(record) %></i>
+          </div>
+          <% end %>
+        </td>
+
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

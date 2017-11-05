@@ -16,7 +16,7 @@
         <td colspan="2" class="center"><%= user.name.titleize %></td>
 
         <td colspan="6" class="center">
-          <%= user.medical_records.size %>
+          <%= link_to user.medical_records.size, dorp_medical_records_path(user_id: user.id) %>
         </td>
 
         <td colspan="2" class="center">
