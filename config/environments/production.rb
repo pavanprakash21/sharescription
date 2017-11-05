@@ -67,7 +67,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address:              Rails.application.secrets.smtp_host,
     port:                 Rails.application.secrets.smtp_port,
-    domain:               'sharescription.herokuapp.com',
+    domain:               'gmail.com',
     user_name:            Rails.application.secrets.smtp_username,
     password:             Rails.application.secrets.smtp_password,
     authentication:       :login,
