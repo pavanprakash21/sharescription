@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171104112924) do
+ActiveRecord::Schema.define(version: 20171105123025) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,18 @@ ActiveRecord::Schema.define(version: 20171104112924) do
     t.integer "prescriptions_count", default: 0, null: false
     t.index ["name"], name: "index_medical_records_on_name", unique: true
     t.index ["user_id"], name: "index_medical_records_on_user_id"
+  end
+
+  create_table "notifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "sender_type"
+    t.uuid "sender_id"
+    t.string "recepient_type"
+    t.uuid "recepient_id"
+    t.string "action", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recepient_type", "recepient_id"], name: "index_notifications_on_recepient_type_and_recepient_id"
+    t.index ["sender_type", "sender_id"], name: "index_notifications_on_sender_type_and_sender_id"
   end
 
   create_table "pharmacists", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

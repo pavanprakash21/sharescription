@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :medical_records, dependent: :destroy
   has_many :share_records, dependent: :destroy
   has_many :prescriptions, through: :medical_records
+  has_many :notifications, dependent: :destroy
 
   devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable
