@@ -14,6 +14,9 @@ class HomeController < ApplicationController
         total_doctor_shared_records: total_doctor_shared_records,
         total_pharma_shared_records: total_pharma_shared_records
       }
+
+      @notifications = current_user.received_notifications.includes(:sender, :medical_record)
+                                   .order(created_at: :desc)
     end
   else
     #

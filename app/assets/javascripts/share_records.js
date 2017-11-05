@@ -70,7 +70,8 @@ $(document).ready(function() {
       var val = {
         shareableId: $(this).data('sid'),
         shareableType: $(this).data('class'),
-        userId: $(this).data('uid')
+        userId: $(this).data('uid'),
+        action: 'requested'
       };
       $.ajax({
         url: '/share_records',
@@ -81,7 +82,8 @@ $(document).ready(function() {
             shareable_id: val.shareableId,
             shareable_type: val.shareableType,
             user_id: val.userId,
-            created_by: val.shareableType
+            created_by: val.shareableType,
+            action: val.action
           }
         },
         success: function(data) {
@@ -91,6 +93,38 @@ $(document).ready(function() {
         },
         error: function(data) {
           renderToastAndCloseModal(data.responseJSON.message, 'error');
+        }
+      });
+    });
+
+    $('#js-grant-permission > i').on('click', function() {
+      var shareRecordId = $(this).data('sid')
+      $.ajax({
+        url: '/share_records/' + shareRecordId + '/permit',
+        type: 'PATCH',
+        success: function(data) {
+            var ico = $('i[data-sid=' + shareRecordId + ']')
+            ico.parent().remove()
+            Materialize.toast(data.message, 4000, 'toast-flash toast-success');
+        },
+        error: function(data) {
+          renderToastAndCloseModal(data.responseJSON.message, 'error');
+        }
+      });
+    });
+
+    $('#js-deny-permission > i').on('click', function() {
+      var shareRecordId = $(this).data('sid');
+      $.ajax({
+        url: '/share_records/' + shareRecordId,
+        type: 'DELETE',
+        success: function(data) {
+          var ico = $('i[data-sid=' + shareRecordId + ']')
+          ico.parent().remove()
+          Materialize.toast('Permission has been denied for this record successfully', 4000, 'toast-flash toast-success')
+        },
+        error: function(data) {
+          Materialize.toast(data.responseJSON.message, 4000, 'toast-flash toast-error')
         }
       });
     });
@@ -134,7 +168,8 @@ function postShareData(val, medicalRecordId) {
         medical_record_id: medicalRecordId,
         shareable_id: val.id,
         shareable_type: val.class,
-        created_by: 'User'
+        created_by: 'User',
+        action: 'shared'
       }
     },
     success: function(data) {

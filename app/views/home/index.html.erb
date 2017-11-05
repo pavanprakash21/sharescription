@@ -3,52 +3,78 @@
 </div>
 
 <% if user_signed_in? %>
-  <div class="row">
+<div class="row">
 
-    <div class="col s12 m6 l3">
-      <div class="card">
-        <div class="card-content green white-text">
-          <p class="card-stats-title center">Number of Medical Records</p>
-          <h4 class="card-stats-number center"><%= @data[:total_medical_records] %></h4>
-        </div>
+  <div class="col s12 m6 l3">
+    <div class="card">
+      <div class="card-content green white-text">
+        <p class="card-stats-title center">Number of Medical Records</p>
+        <h4 class="card-stats-number center"><%= @data[:total_medical_records] %></h4>
       </div>
     </div>
-
-    <div class="col s12 m6 l3">
-      <div class="card">
-        <div class="card-content green white-text">
-          <p class="card-stats-title center">Total Number of Prescriptions</p>
-          <h4 class="card-stats-number center"><%= @data[:total_presriptions] %></h4>
-        </div>
-      </div>
-    </div>
-
-    <div class="col s12 m6 l3">
-      <div class="card">
-        <div class="card-content green white-text">
-          <p class="card-stats-title center">Shared records with Doctors</p>
-          <h4 class="card-stats-number center"><%= @data[:total_doctor_shared_records] %></h4>
-        </div>
-      </div>
-    </div>
-
-    <div class="col s12 m6 l3">
-      <div class="card">
-        <div class="card-content green white-text">
-          <p class="card-stats-title center">Shared records with Pharmacists</p>
-          <h4 class="card-stats-number center"><%= @data[:total_pharma_shared_records] %></h4>
-        </div>
-      </div>
-    </div>
-
   </div>
 
-  <div class="row">
-    <h5>Notifications</h5>
-    <ul>
-      <li>
-        1. Doctor A has asked your permission to view Medical Record A
-      </li>
-    </ul>
+  <div class="col s12 m6 l3">
+    <div class="card">
+      <div class="card-content green white-text">
+        <p class="card-stats-title center">Total Number of Prescriptions</p>
+        <h4 class="card-stats-number center"><%= @data[:total_presriptions] %></h4>
+      </div>
+    </div>
   </div>
+
+  <div class="col s12 m6 l3">
+    <div class="card">
+      <div class="card-content green white-text">
+        <p class="card-stats-title center">Shared records with Doctors</p>
+        <h4 class="card-stats-number center"><%= @data[:total_doctor_shared_records] %></h4>
+      </div>
+    </div>
+  </div>
+
+  <div class="col s12 m6 l3">
+    <div class="card">
+      <div class="card-content green white-text">
+        <p class="card-stats-title center">Shared records with Pharmacists</p>
+        <h4 class="card-stats-number center"><%= @data[:total_pharma_shared_records] %></h4>
+      </div>
+    </div>
+  </div>
+
+</div>
+<hr>
+<div class="row">
+  <h5 class="center">Activity Feed</h5>
+  <hr>
+  <ul>
+    <% @notifications.each do |note| %>
+    <li class="valign-wrapper">
+      <div class="col s10">
+        <p class="flow-text"><%= note.sender.name %>
+          has
+          <%= note.action %>
+          to view your
+          <%= note.medical_record.name %></p>
+      </div>
+      <% if note.action == 'requested' && note.share_record.shared == false %>
+      <div class="col s1">
+        <%= link_to '#', id: note.share_record_id do %>
+        <div class='btn btn-floating teal' id="js-grant-permission">
+          <i class="material-icons" data-sid=<%= note.share_record_id %> id="js-prescription-grant-permission">check</i>
+        </div>
+        <% end %>
+      </div>
+
+      <div class="col s1">
+        <%= link_to '#', id: note.share_record_id do %>
+        <div class='btn btn-floating orange' id="js-deny-permission">
+          <i class="material-icons" data-sid=<%= note.share_record_id %> id="js-prescription-deny-permission">block</i>
+        </div>
+        <% end %>
+      </div>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+</div>
 <% end %>

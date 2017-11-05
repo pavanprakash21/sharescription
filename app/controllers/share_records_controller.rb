@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ShareRecordsController < ApplicationController
-  skip_before_action :verify_authenticity_token, if: :json_request?, only: %i[create temp_revoke destroy]
+  skip_before_action :verify_authenticity_token, if: :json_request?, only: %i[create temp_revoke destroy permit]
   before_action :authenticate!, only: %i[new create]
 
   def index
@@ -38,6 +38,16 @@ class ShareRecordsController < ApplicationController
     end
   end
 
+  def permit
+    share_record = current_user.share_records.find(params[:id])
+    if share_record.update(shared: true)
+      render json: { message: 'Permission has been granted successfully' }, status: 200
+    else
+      render json:   { errors: share_record.errors, message: 'Something went wrong. Please try again or contact us' },
+             status: 400
+    end
+  end
+
   def destroy
     share_record = current_user.share_records.find(params[:id])
     if share_record.destroy
@@ -67,7 +77,7 @@ class ShareRecordsController < ApplicationController
   end
 
   def share_record_params
-    params.require(:share_record).permit(:medical_record_id, :shareable_id, :shareable_type, :created_by)
+    params.require(:share_record).permit(:medical_record_id, :shareable_id, :shareable_type, :created_by, :action)
   end
 
   def json_request?

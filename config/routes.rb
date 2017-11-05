@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :share_records, only: %i[index create destroy] do
     patch :temp_revoke, on: :member
+    patch :permit, on: :member
   end
 
   get '/search/suggestions', to: 'search#index'

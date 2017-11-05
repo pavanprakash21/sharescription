@@ -9,7 +9,12 @@
     <%= csrf_meta_tags %>
 
     <!-- Allows control over where resources are loaded from -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://fonts.gstatic.com https://fonts.googleapis.com ws://localhost:3000/cable ws://sharescription.herokuapp.com/cable">
+    <!-- Remove this before going to production -->
+    <% if Rails.env.production? %>
+      <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://fonts.gstatic.com https://fonts.googleapis.com ws://sharescription.herokuapp.com/cable">
+    <% else %>
+      <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://fonts.gstatic.com https://fonts.googleapis.com ws://localhost:3000/cable ws://127.0.0.1:3000/cable">
+    <% end %>
 
     <title>Sharescription | Share your medical records with one click</title>
     <meta name="description" content="Create medical records and securely share them with your doctors or pharmacists">

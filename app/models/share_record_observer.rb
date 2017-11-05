@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class ShareRecordObserver < ActiveRecord::Observer
-  def after_create(share_record)
+  def after_save(share_record)
     if created_by_user(share_record)
-      Notification.create_from(share_record, :shared)
+      Notification.create_from(share_record)
     elsif created_by_dorp(share_record)
-      Notification.create_from(share_record, :requested)
+      Notification.create_from(share_record)
     end
   end
 

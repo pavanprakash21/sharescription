@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171105165916) do
+ActiveRecord::Schema.define(version: 20171105182630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,9 +60,11 @@ ActiveRecord::Schema.define(version: 20171105165916) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "medical_record_id"
+    t.uuid "share_record_id"
     t.index ["medical_record_id"], name: "index_notifications_on_medical_record_id"
     t.index ["recepient_type", "recepient_id"], name: "index_notifications_on_recepient_type_and_recepient_id"
     t.index ["sender_type", "sender_id"], name: "index_notifications_on_sender_type_and_sender_id"
+    t.index ["share_record_id"], name: "index_notifications_on_share_record_id"
   end
 
   create_table "pharmacists", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -111,6 +113,7 @@ ActiveRecord::Schema.define(version: 20171105165916) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "created_by"
+    t.string "action"
     t.index ["medical_record_id"], name: "index_share_records_on_medical_record_id"
     t.index ["shareable_type", "shareable_id"], name: "index_share_records_on_shareable_type_and_shareable_id"
     t.index ["shared"], name: "index_share_records_on_shared", where: "shared"
@@ -143,6 +146,7 @@ ActiveRecord::Schema.define(version: 20171105165916) do
 
   add_foreign_key "medical_records", "users"
   add_foreign_key "notifications", "medical_records"
+  add_foreign_key "notifications", "share_records"
   add_foreign_key "prescriptions", "medical_records"
   add_foreign_key "share_records", "medical_records"
   add_foreign_key "share_records", "users"
