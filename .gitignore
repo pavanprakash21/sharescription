@@ -24,4 +24,4 @@ coverage
 config/secrets.yml.key
 
 # Add redis dump
-dump.rdb
+/dump.rdb
