@@ -7,7 +7,3 @@ development:
 
 test:
   db: 1
-
-production:
-  url: Rails.application.secrets.redis_url
-  db: 1
