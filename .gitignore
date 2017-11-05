@@ -22,3 +22,6 @@ coverage
 
 # Ignore encrypted secrets key file.
 config/secrets.yml.key
+
+# Add redis dump
+dump.rdb

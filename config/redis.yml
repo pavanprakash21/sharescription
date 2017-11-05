@@ -9,6 +9,4 @@ test:
   db: 1
 
 production:
-  host: Rails.application.secrets.redis_host
-  port: 6379
-  db: 1
+  url: Rails.application.secrets.redis_host
