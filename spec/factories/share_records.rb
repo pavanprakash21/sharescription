@@ -1,5 +1,21 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: share_records
+#
+#  id                :uuid             not null, primary key
+#  shared            :boolean          default(FALSE), not null
+#  user_id           :uuid
+#  medical_record_id :uuid
+#  shareable_type    :string
+#  shareable_id      :uuid
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  created_by        :string
+#  action            :string
+#
+
 FactoryBot.define do
   factory :share_record do
     shared false
