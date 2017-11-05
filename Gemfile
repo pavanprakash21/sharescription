@@ -38,9 +38,6 @@ gem 'simple_form'
 # Enumerator
 gem 'enumerize'
 
-# Email Delivery
-gem 'sparkpost_rails', github: 'the-refinery/sparkpost_rails'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

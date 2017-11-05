@@ -63,8 +63,17 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "sharescription_#{Rails.env}"
   config.action_mailer.perform_caching = false
-  config.action_mailer.delivery_method = :sparkpost
   config.action_mailer.default_url_options = { host: 'sharescription.herokuapp.com' }
+  config.action_mailer.smtp_settings = {
+    address:        ENV['MAILGUN_SMTP_SERVER'],
+    port:           ENV['MAILGUN_SMTP_PORT'],
+    domain:         'sharescription.herokuapp.com',
+    user_name:      ENV['MAILGUN_SMTP_LOGIN'],
+    password:       ENV['MAILGUN_SMTP_PASSWORD'],
+    authentication: :plain
+  }
+
+  config.action_mailer.delivery_method = :smtp
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
