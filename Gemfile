@@ -1,3 +1,4 @@
+
 # frozen_string_literal: true
 
 ruby '2.4.1'
@@ -44,6 +45,9 @@ gem 'sidekiq'
 # User observers instead of model callbacks for better clarity and maintain Single Responsibility Principle
 gem 'rails-observers'
 
+# Use fake seed data
+gem 'faker'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -51,7 +55,6 @@ group :development, :test do
   gem 'bullet'
   gem 'bundler-audit'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'pry'
   gem 'pry-byebug'
   gem 'pry-rails'
