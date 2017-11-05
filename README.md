@@ -29,3 +29,13 @@ rspec
 
 * Deployment instructions
 heroku create thisapp
+
+Assumptions made:
+
+1. Medical Records belongs to only user
+2. Medical record can have many prescriptions
+3. Asking for permission has been understood as asking permission to view the prescriptions of a particular medical record
+4. When a doctor asks for permission, a pseudo record 'share record' will be created
+5. User can temporarily turn off the permission to a particular doctor or a pharmacist over a medical record.
+6. User can also delete a permitted record.
+7. Doctors can view the medical records by going to a user's profile from a list of users and then ask for permission
