@@ -6,7 +6,7 @@ class Pharmacist < ApplicationRecord
   validates :name, format: { with: /\A[a-zA-Z. ]*\z/, message: 'please use only English alphabets' },
                    length: { in: 4..60 }
 
-  has_many :share_records, dependent: :destroy
+  has_many :share_records, as: :shareable, dependent: :destroy
   has_many :sent_notifications, as: :sender, class_name: 'Notification', dependent: :destroy
   has_many :received_notifications, as: :recepient, class_name: 'Notification', dependent: :destroy
 

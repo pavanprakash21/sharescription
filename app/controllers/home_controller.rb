@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   def index
     user_data if user_signed_in?
     dorp_data if doctor_signed_in? || pharmacist_signed_in?
-    @notifications = current_resource.received_notifications.includes(:sender, :medical_record)
+    @notifications = current_resource.received_notifications.includes(:sender, :medical_record, :share_record)
                                      .order(created_at: :desc).limit(20)
   end
 

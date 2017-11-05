@@ -29,7 +29,7 @@
           to view
           <%= link_to note.medical_record.name, medical_record_path(note.medical_record) %></p>
       </div>
-      <% if note.action == 'requested' && note.share_record.shared == false %>
+      <% if user_signed_in? && note.action == 'requested' && note.share_record.shared == false %>
       <div class="col s1">
         <%= link_to '#', id: note.share_record_id do %>
         <div class='btn btn-floating teal' id="js-grant-permission">
