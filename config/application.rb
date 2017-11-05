@@ -29,5 +29,7 @@ module Sharescription
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    # Specify the queue adapter globally for all environments
+    config.active_job.queue_adapter = :sidekiq
   end
 end
