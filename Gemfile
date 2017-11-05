@@ -75,6 +75,7 @@ group :development do
 end
 
 group :test do
+  gem 'action-cable-testing'
   gem 'capybara', '~> 2.7'
   gem 'capybara-webkit', '~> 1.11'
   gem 'database_cleaner'
