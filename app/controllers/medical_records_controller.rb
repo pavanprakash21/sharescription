@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class MedicalRecordsController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create]
+  before_action :authenticate!, only: %i[new create]
   before_action :find_medical_record, only: %i[edit update destroy]
 
   def index

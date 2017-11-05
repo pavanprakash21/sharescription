@@ -4,7 +4,7 @@
 
 <div class="row">
   <% if @medical_records.present? %>
-    <%= render 'dorp_table', medical_records: @medical_records %>
+    <%= render 'dorp_table', medical_records: @medical_records, user: @user %>
   <% else %>
     <%= render 'no_records_found', user: @user %>
   <% end %>

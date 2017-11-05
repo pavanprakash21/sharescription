@@ -45,7 +45,10 @@ module MedicalRecordsHelper
   end
 
   def dorp_visibility_icon(record)
-    current_resource = current_doctor ? current_doctor : current_pharmacist
-    record.share_records.exists?(shareable: current_resource) ? 'visibility' : 'visibility_off'
+    record.share_records.exists?(shareable: current_resource, shared: true) ? 'visibility' : 'visibility_off'
+  end
+
+  def dorp_request_icon(record)
+    record.share_records.exists?(shareable: current_resource)
   end
 end

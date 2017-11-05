@@ -2,23 +2,30 @@
   <table class="responsive-table highlight">
     <thead>
       <tr>
-        <th colspan="4" class="center">Name</th>
-        <th colspan="4" class="center"># of Prescriptions</th>
-        <th colspan="4" class="center">View Permission</th>
+        <th colspan="3" class="center">Name</th>
+        <th colspan="3" class="center"># of Prescriptions</th>
+        <th colspan="3" class="center">View Permission</th>
+        <th colspan="3" class="center">Reqeust Permission</th>
       </tr>
     </thead>
     <tbody>
       <% medical_records.each do |record| %>
       <tr>
-        <td colspan="4" class="center"><%= record.name.titleize %></td>
+        <td colspan="3" class="center"><%= record.name.titleize %></td>
 
-        <td colspan="4" class="center"><%= record.prescriptions.size %></td>
+        <td colspan="3" class="center"><%= record.prescriptions.size %></td>
 
-        <td colspan="4" class="center">
-          <%= link_to '#', id: record.id, class: 'modal-trigger' do %>
-          <div class='btn btn-floating orange' id="js-share-temp-revoke">
+        <td colspan="3" class="center">
+          <div class='btn btn-floating teal'>
             <i class="material-icons" data-id=<%= record.id %> id="js-visibility-filter"><%= dorp_visibility_icon(record) %></i>
           </div>
+        </td>
+
+        <td colspan="3" class="center">
+          <% if dorp_request_icon(record) == 'visibility_off' %>
+            <div class='btn btn-floating orange' id="js-request-permission">
+              <i class="material-icons" data-mid=<%= record.id %> data-sid=<%= current_resource.id %> data-class=<%= current_resource.class.name %> data-uid=<%= user.id %> id="js-request-permission-icon">view_array</i>
+            </div>
           <% end %>
         </td>
 

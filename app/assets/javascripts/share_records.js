@@ -64,6 +64,35 @@ $(document).ready(function() {
         }
       });
     });
+
+    $('#js-request-permission > i').on('click', function() {
+      var medicalRecordId = $(this).data('mid');
+      var val = {
+        shareableId: $(this).data('sid'),
+        shareableType: $(this).data('class'),
+        userId: $(this).data('uid')
+      };
+      $.ajax({
+        url: '/share_records',
+        type: 'POST',
+        data: {
+          share_record: {
+            medical_record_id: medicalRecordId,
+            shareable_id: val.shareableId,
+            shareable_type: val.shareableType,
+            user_id: val.userId
+          }
+        },
+        success: function(data) {
+            var ico = $('i[data-mid=' + medicalRecordId + ']')
+            ico.parent().remove()
+            Materialize.toast(data.message, 4000, 'toast-flash toast-success');
+        },
+        error: function(data) {
+          renderToastAndCloseModal(data.responseJSON.message, 'error');
+        }
+      });
+    });
 });
 
 function renderShareText(val) {
