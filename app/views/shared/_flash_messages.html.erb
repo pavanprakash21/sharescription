@@ -1,0 +1,5 @@
+<script type="text/javascript">
+  <% flash.each do |key, message| %>
+    Materialize.toast('<%= message %>', 5000, 'toast-flash toast-<%= key %>')
+  <% end %>
+</script>

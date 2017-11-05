@@ -2,13 +2,18 @@
 
 class HomeController < ApplicationController
   def index
-    user_data if user_signed_in?
-    dorp_data if doctor_signed_in? || pharmacist_signed_in?
+    return unless user_signed_in? || doctor_signed_in? || pharmacist_signed_in?
+    gather_respective_data
     @notifications = current_resource.received_notifications.includes(:sender, :medical_record, :share_record)
                                      .order(created_at: :desc).limit(20)
   end
 
   private
+
+  def gather_respective_data
+    user_data if user_signed_in?
+    dorp_data if doctor_signed_in? || pharmacist_signed_in?
+  end
 
   def user_data
     total_medical_records = current_resource.medical_records.size

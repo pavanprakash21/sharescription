@@ -22,6 +22,7 @@ $(document).ready(function() {
 
     $('#js-close-modal').on('click', function() {
       $('#share-modal').modal('close');
+      clearRendered();
     });
 
     $('input.autocomplete').on('change paste keyup', function() {
@@ -148,6 +149,7 @@ function renderAndShare(val, medicalRecordId) {
   });
   $('#js-share-cancel').on('click', function() {
     clearRendered();
+    location.reload(f);
   })
 }
 

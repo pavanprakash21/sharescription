@@ -2,51 +2,55 @@
   <h1 class="center teal-text">Welcome to Sharescription</h1>
 </div>
 
-<div class="row">
-  <% @data.each do |key, value|  %>
-  <div class="col s12 m6 l3">
-    <div class="card">
-      <div class="card-content green white-text">
-        <p class="card-stats-title center"> <%= key.to_s.humanize %> </p>
-        <h4 class="card-stats-number center"><%= value %></h4>
+<% if @data %>
+  <div class="row">
+    <% @data.each do |key, value|  %>
+    <div class="col s12 m6 l3">
+      <div class="card">
+        <div class="card-content green white-text">
+          <p class="card-stats-title center"> <%= key.to_s.humanize %> </p>
+          <h4 class="card-stats-number center"><%= value %></h4>
+        </div>
       </div>
     </div>
-  </div>
-  <% end %>
-</div>
-
-<hr>
-<div class="row">
-  <h5 class="center">Activity Feed</h5>
-  <hr>
-  <ul>
-    <% @notifications.each do |note| %>
-    <li class="valign-wrapper">
-      <div class="col s10">
-        <p class="flow-text"><%= note.sender.name %>
-          has
-          <%= note.action %>
-          to view
-          <%= link_to note.medical_record.name, medical_record_path(note.medical_record) %></p>
-      </div>
-      <% if user_signed_in? && note.action == 'requested' && note.share_record.shared == false %>
-      <div class="col s1">
-        <%= link_to '#', id: note.share_record_id do %>
-        <div class='btn btn-floating teal' id="js-grant-permission">
-          <i class="material-icons" data-sid=<%= note.share_record_id %> id="js-prescription-grant-permission">check</i>
-        </div>
-        <% end %>
-      </div>
-
-      <div class="col s1">
-        <%= link_to '#', id: note.share_record_id do %>
-        <div class='btn btn-floating orange' id="js-deny-permission">
-          <i class="material-icons" data-sid=<%= note.share_record_id %> id="js-prescription-deny-permission">block</i>
-        </div>
-        <% end %>
-      </div>
-      <% end %>
-    </li>
     <% end %>
-  </ul>
-</div>
+  </div>
+<% end %>
+
+<% if @notifications %>
+  <hr>
+  <div class="row">
+    <h5 class="center">Activity Feed</h5>
+    <hr>
+    <ul>
+      <% @notifications.each do |note| %>
+      <li class="valign-wrapper">
+        <div class="col s10">
+          <p class="flow-text"><%= note.sender.name %>
+            has
+            <%= note.action %>
+            to view
+            <%= link_to note.medical_record.name, medical_record_path(note.medical_record) %></p>
+        </div>
+        <% if user_signed_in? && note.action == 'requested' && note.share_record.shared == false %>
+        <div class="col s1">
+          <%= link_to '#', id: note.share_record_id do %>
+          <div class='btn btn-floating teal' id="js-grant-permission">
+            <i class="material-icons" data-sid=<%= note.share_record_id %> id="js-prescription-grant-permission">check</i>
+          </div>
+          <% end %>
+        </div>
+
+        <div class="col s1">
+          <%= link_to '#', id: note.share_record_id do %>
+          <div class='btn btn-floating orange' id="js-deny-permission">
+            <i class="material-icons" data-sid=<%= note.share_record_id %> id="js-prescription-deny-permission">block</i>
+          </div>
+          <% end %>
+        </div>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
