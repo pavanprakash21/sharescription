@@ -8,7 +8,8 @@ class ShareRecordsController < ApplicationController
     @share_records = if current_user
                        current_user.share_records.includes(:medical_record, :shareable).order(created_at: :desc)
                      elsif current_doctor || current_pharmacist
-                       current_resource.share_records.where(shared: true).includes(:medical_record, :user).order(created_at: :desc)
+                       current_resource.share_records.where(shared: true).includes(:medical_record, :user)
+                                       .order(created_at: :desc)
                      end
   end
 
@@ -30,32 +31,20 @@ class ShareRecordsController < ApplicationController
 
   def temp_revoke
     share_record = current_user.share_records.find(params[:id])
-    if share_record.safe_toggle(:shared)
-      render json: { message: 'Permission has been toggled successfully', visible: share_record.shared? }, status: 200
-    else
-      render json:   { errors: share_record.errors, message: 'Something went wrong. Please try again or contact us' },
-             status: 400
-    end
+    share_record.safe_toggle(:shared)
+    render json: { message: 'Permission has been toggled successfully', visible: share_record.shared? }, status: 200
   end
 
   def permit
     share_record = current_user.share_records.find(params[:id])
-    if share_record.update(shared: true)
-      render json: { message: 'Permission has been granted successfully' }, status: 200
-    else
-      render json:   { errors: share_record.errors, message: 'Something went wrong. Please try again or contact us' },
-             status: 400
-    end
+    share_record.update(shared: true)
+    render json: { message: 'Permission has been granted successfully' }, status: 200
   end
 
   def destroy
     share_record = current_user.share_records.find(params[:id])
-    if share_record.destroy
-      render json: { message: '' }, status: 204
-    else
-      render json:   { errors: share_record.errors, message: 'Something went wrong. Please try again or contact us' },
-             status: 400
-    end
+    share_record.destroy
+    render json: { message: '' }, status: 204
   end
 
   private
