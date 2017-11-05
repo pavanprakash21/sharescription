@@ -59,7 +59,7 @@ class MedicalRecordsController < ApplicationController
   def destroy
     @medical_record.destroy
     respond_to do |format|
-      format.html { redirect_to medical_records_path, notice: 'Your medical record has been updated' }
+      format.html { redirect_to medical_records_path, notice: 'Your medical record has been deleted' }
     end
   end
 
