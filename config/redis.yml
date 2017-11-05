@@ -10,3 +10,4 @@ test:
 
 production:
   url: Rails.application.secrets.redis_url
+  db: 1
