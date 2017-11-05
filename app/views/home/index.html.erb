@@ -2,46 +2,19 @@
   <h1 class="center teal-text">Welcome to Sharescription</h1>
 </div>
 
-<% if user_signed_in? %>
 <div class="row">
-
+  <% @data.each do |key, value|  %>
   <div class="col s12 m6 l3">
     <div class="card">
       <div class="card-content green white-text">
-        <p class="card-stats-title center">Number of Medical Records</p>
-        <h4 class="card-stats-number center"><%= @data[:total_medical_records] %></h4>
+        <p class="card-stats-title center"> <%= key.to_s.humanize %> </p>
+        <h4 class="card-stats-number center"><%= value %></h4>
       </div>
     </div>
   </div>
-
-  <div class="col s12 m6 l3">
-    <div class="card">
-      <div class="card-content green white-text">
-        <p class="card-stats-title center">Total Number of Prescriptions</p>
-        <h4 class="card-stats-number center"><%= @data[:total_presriptions] %></h4>
-      </div>
-    </div>
-  </div>
-
-  <div class="col s12 m6 l3">
-    <div class="card">
-      <div class="card-content green white-text">
-        <p class="card-stats-title center">Shared records with Doctors</p>
-        <h4 class="card-stats-number center"><%= @data[:total_doctor_shared_records] %></h4>
-      </div>
-    </div>
-  </div>
-
-  <div class="col s12 m6 l3">
-    <div class="card">
-      <div class="card-content green white-text">
-        <p class="card-stats-title center">Shared records with Pharmacists</p>
-        <h4 class="card-stats-number center"><%= @data[:total_pharma_shared_records] %></h4>
-      </div>
-    </div>
-  </div>
-
+  <% end %>
 </div>
+
 <hr>
 <div class="row">
   <h5 class="center">Activity Feed</h5>
@@ -53,8 +26,8 @@
         <p class="flow-text"><%= note.sender.name %>
           has
           <%= note.action %>
-          to view your
-          <%= note.medical_record.name %></p>
+          to view
+          <%= link_to note.medical_record.name, medical_record_path(note.medical_record) %></p>
       </div>
       <% if note.action == 'requested' && note.share_record.shared == false %>
       <div class="col s1">
@@ -77,4 +50,3 @@
     <% end %>
   </ul>
 </div>
-<% end %>

@@ -1,0 +1,9 @@
+<div class="row">
+  <ul class="col s12">
+    <% prescriptions_sentences_from(@medical_record).each do |prescription| %>
+      <li class="valign-wrapper">
+        <p class="flow-text"><%= prescription %></p>
+      </li>
+    <% end %>
+  </ul>
+</div>
