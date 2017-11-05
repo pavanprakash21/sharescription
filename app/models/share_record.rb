@@ -10,6 +10,10 @@ class ShareRecord < ApplicationRecord
   scope :doctor_records, -> { where(shareable_type: 'Doctor') }
   scope :pharma_records, -> { where(shareable_type: 'Pharmacist') }
 
+  def self.shared_with(resource)
+    where(shareable_type: resource.class.name, shareable_id: resource.id)
+  end
+
   def safe_toggle(attr)
     public_send(attr) == true ? update(:"#{attr}" => false) : update(:"#{attr}" => true)
   end

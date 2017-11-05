@@ -1,0 +1,35 @@
+<div class="row">
+  <h3 class="teal-text center">Users</h3>
+  <div class="row">
+  <table class="responsive-table highlight">
+    <thead>
+      <tr>
+        <th colspan="4" class="center">Name</th>
+        <th colspan="4" class="center"># of records</th>
+        <th colspan="4" class="center"># of records shared with you</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <td colspan="2" class="center"><%= user.name.titleize %></td>
+
+        <td colspan="6" class="center">
+          <%= user.medical_records.size %>
+        </td>
+
+        <td colspan="2" class="center">
+          <% if current_doctor %>
+            <%= user.share_records.shared_with(current_doctor).size %>
+          <% elsif current_pharmacist %>
+            <%= user.share_records.shared_with(current_pharmacist).size %>
+          <% end %>
+        </td>
+
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+</div>
