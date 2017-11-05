@@ -5,6 +5,7 @@ FactoryBot.define do
     shared false
     user
     medical_record
+    action :requested
     association :shareable, factory: :doctor
 
     trait :shared do

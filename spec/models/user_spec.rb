@@ -33,4 +33,10 @@ describe User, type: :model do
     it { expect(user).to have_db_column(:name).of_type(:string).with_options(null: false, default: '') }
     it { expect(user).to have_db_column(:encrypted_password).of_type(:string).with_options(null: false, default: '') }
   end
+
+  describe 'public instance methods' do
+    context 'responds to its methods' do
+      it { expect(user).to respond_to(:send_devise_notification) }
+    end
+  end
 end

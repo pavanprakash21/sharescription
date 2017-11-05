@@ -31,4 +31,10 @@ describe Pharmacist, type: :model do
                                                                .with_options(null: false, default: '')
     end
   end
+
+  describe 'public instance methods' do
+    context 'responds to its methods' do
+      it { expect(pharmacist).to respond_to(:send_devise_notification) }
+    end
+  end
 end

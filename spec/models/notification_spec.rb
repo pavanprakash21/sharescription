@@ -24,4 +24,17 @@ describe Notification, type: :model do
     it { expect(notification).to have_db_column(:recepient_type).of_type(:string) }
     it { expect(notification).to have_db_column(:recepient_id).of_type(:uuid) }
   end
+
+  describe 'public class methods' do
+    context 'responds to its methods' do
+      it { expect(Notification).to respond_to(:create_from) }
+    end
+
+    context 'executes self.create_from properly' do
+      it 'creates a notification from share record' do
+        share_record = create :share_record, action: :granted
+        expect(Notification.create_from(share_record)).to eq Notification.find_by(share_record: share_record)
+      end
+    end
+  end
 end
