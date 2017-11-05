@@ -80,7 +80,8 @@ $(document).ready(function() {
             medical_record_id: medicalRecordId,
             shareable_id: val.shareableId,
             shareable_type: val.shareableType,
-            user_id: val.userId
+            user_id: val.userId,
+            created_by: val.shareableType
           }
         },
         success: function(data) {
@@ -132,7 +133,8 @@ function postShareData(val, medicalRecordId) {
       share_record: {
         medical_record_id: medicalRecordId,
         shareable_id: val.id,
-        shareable_type: val.class
+        shareable_type: val.class,
+        created_by: 'User'
       }
     },
     success: function(data) {

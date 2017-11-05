@@ -31,5 +31,7 @@ module Sharescription
     config.generators.system_tests = nil
     # Specify the queue adapter globally for all environments
     config.active_job.queue_adapter = :sidekiq
+    # Register observers
+    config.active_record.observers = %i[share_record_observer notification_observer]
   end
 end

@@ -67,7 +67,7 @@ class ShareRecordsController < ApplicationController
   end
 
   def share_record_params
-    params.require(:share_record).permit(:medical_record_id, :shareable_id, :shareable_type)
+    params.require(:share_record).permit(:medical_record_id, :shareable_id, :shareable_type, :created_by)
   end
 
   def json_request?

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171105143238) do
+ActiveRecord::Schema.define(version: 20171105165916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 20171105143238) do
     t.uuid "shareable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "created_by"
     t.index ["medical_record_id"], name: "index_share_records_on_medical_record_id"
     t.index ["shareable_type", "shareable_id"], name: "index_share_records_on_shareable_type_and_shareable_id"
     t.index ["shared"], name: "index_share_records_on_shared", where: "shared"
