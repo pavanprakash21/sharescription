@@ -7,7 +7,7 @@ class Doctor < ApplicationRecord
                    length: { in: 4..60 }
 
   has_many :notifications, dependent: :destroy
-  has_many :share_records, dependent: :destroy
+  has_many :share_records, as: :shareable, dependent: :destroy
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

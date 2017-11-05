@@ -5,7 +5,13 @@ class ShareRecordsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create]
 
   def index
-    @share_records = current_user.share_records.includes(:medical_record, :shareable).order(created_at: :desc)
+    @share_records = if current_user
+                       current_user.share_records.includes(:medical_record, :shareable).order(created_at: :desc)
+                     elsif current_doctor
+                       current_doctor.share_records.includes(:medical_record, :user).order(created_at: :desc)
+                     elsif current_pharmacist
+                       current_pharmacist.share_records.includes(:medical_record, :user).order(created_at: :desc)
+                     end
   end
 
   def create

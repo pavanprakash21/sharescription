@@ -2,7 +2,7 @@
 
 class MedicalRecordsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create]
-  before_action :find_medical_record, only: %i[show edit update destroy]
+  before_action :find_medical_record, only: %i[edit update destroy]
 
   def index
     @medical_records = if user_signed_in?
@@ -31,7 +31,13 @@ class MedicalRecordsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @medical_record = if current_user
+                        current_user.medical_records.find(params[:id])
+                      else
+                        MedicalRecord.find(params[:id])
+                      end
+  end
 
   def edit; end
 

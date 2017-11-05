@@ -2,7 +2,11 @@
   <h3 class="teal-text center">Your Shared Records
   </h3>
   <% if @share_records.present? %>
-    <%= render 'table', share_records: @share_records %>
+    <% if current_user %>
+      <%= render 'table', share_records: @share_records %>
+    <% elsif current_doctor || current_pharmacist %>
+      <%= render 'doc_or_pharm_table', share_records: @share_records %>
+    <% end %>
   <% else %>
     <%= render 'prompt_share' %>
   <% end %>

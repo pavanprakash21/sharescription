@@ -1,0 +1,35 @@
+<div class="row">
+<table class="responsive-table highlight">
+  <thead>
+    <tr>
+      <th colspan="2" class="center">Name</th>
+      <th colspan="6" class="center">Shared By</th>
+      <th colspan="2" class="center">View Prescriptions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% share_records.each do |record| %>
+    <tr>
+      <td colspan="2" class="center"><%= record.medical_record.name.titleize %></td>
+
+      <td colspan="6" class="center">
+        <%= record.user.name %>
+      </td>
+
+      <td colspan="2" class="center">
+        <%= link_to '#prescription-modal', id: record.id, class: 'modal-trigger' do %>
+        <div class='btn btn-floating orange' id="js-prescription-onclick">
+          <i class="material-icons" data-id=<%= record.medical_record.id %> id="js-prescription-dorp-onclick">expand_more</i>
+        </div>
+        <% end %>
+      </td>
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div id="prescription-modal" class="modal bottom-sheet">
+  <div class="modal-content" id="js-prescriptions"></div>
+</div>
