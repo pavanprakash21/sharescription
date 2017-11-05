@@ -73,6 +73,7 @@ end
 
 group :test do
   gem 'database_cleaner'
+  gem 'rspec-sidekiq'
   gem 'shoulda-callback-matchers'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
