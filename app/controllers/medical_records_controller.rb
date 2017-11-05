@@ -8,7 +8,7 @@ class MedicalRecordsController < ApplicationController
     @medical_records = if user_signed_in?
                          current_user.medical_records.order(created_at: :desc)
                        else
-                         'Sorry not allowed'
+                         redirect_to root_path, alert: 'Restricted Access', status: 401
                        end
   end
 

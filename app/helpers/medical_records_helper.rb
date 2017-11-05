@@ -44,11 +44,11 @@ module MedicalRecordsHelper
     prescription.time.humanize(capitalize: false)
   end
 
-  def dorp_visibility_icon(record)
+  def dorp_visibility_icon(record, current_resource)
     record.share_records.exists?(shareable: current_resource, shared: true) ? 'visibility' : 'visibility_off'
   end
 
-  def dorp_request_icon(record)
+  def dorp_request_icon(record, current_resource)
     record.share_records.exists?(shareable: current_resource)
   end
 end

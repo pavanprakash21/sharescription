@@ -17,12 +17,12 @@
 
         <td colspan="3" class="center">
           <div class='btn btn-floating teal'>
-            <i class="material-icons" data-id=<%= record.id %> id="js-visibility-filter"><%= dorp_visibility_icon(record) %></i>
+            <i class="material-icons" data-id=<%= record.id %> id="js-visibility-filter"><%= dorp_visibility_icon(record, current_resource) %></i>
           </div>
         </td>
 
         <td colspan="3" class="center">
-          <% if dorp_request_icon(record) == 'visibility_off' %>
+          <% if dorp_request_icon(record, current_resource) == 'visibility_off' %>
             <div class='btn btn-floating orange' id="js-request-permission">
               <i class="material-icons" data-mid=<%= record.id %> data-sid=<%= current_resource.id %> data-class=<%= current_resource.class.name %> data-uid=<%= user.id %> id="js-request-permission-icon">view_array</i>
             </div>
