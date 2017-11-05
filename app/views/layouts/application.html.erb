@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <%= csrf_meta_tags %>
-
+    <!-- Essential Tags -->
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <%= csrf_meta_tags %>
+
+    <!-- Allows control over where resources are loaded from -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+
     <title>Sharescription | Share your medical records with one click</title>
     <meta name="description" content="Create medical records and securely share them with your doctors or pharmacists">
-
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
@@ -32,6 +33,35 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
+
+    <!-- Identify the software used to build the document (i.e. - WordPress, Dreamweaver) -->
+    <meta name="generator" content="rails">
+
+    <!-- Short description of your document's subject -->
+    <meta name="subject" content="patients,doctors,pharmacists,chemists,hospitals">
+
+    <!-- Gives a general age rating based on the document's content -->
+    <meta name="rating" content="General">
+
+    <!-- Allows control over how referrer information is passed -->
+    <meta name="referrer" content="no-referrer">
+
+    <!-- Geo tags -->
+    <meta name="ICBM" content="19.0760, 72.8777">
+    <meta name="geo.position" content="19.0760;72.8777">
+    <meta name="geo.region" content="IN-MH">
+    <meta name="geo.placename" content="Mumbai">
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+
+    <link rel="author" href="humans.txt">
+    <link rel="me" href="https://github.com/draconiandev" type="text/html">
+    <link rel="me" href="mailto:pavanprakash21@gmail.com">
+    <link rel="me" href="sms:+918850594105">
+
+    <meta name="theme-color" content="#E64545">
   </head>
 
   <body>
