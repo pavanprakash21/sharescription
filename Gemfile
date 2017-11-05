@@ -41,6 +41,9 @@ gem 'enumerize'
 # Background Worker
 gem 'sidekiq'
 
+# User observers instead of model callbacks for better clarity and maintain Single Responsibility Principle
+gem 'rails-observers'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
