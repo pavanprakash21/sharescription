@@ -65,12 +65,13 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.default_url_options = { host: 'sharescription.herokuapp.com' }
   config.action_mailer.smtp_settings = {
-    address:        ENV['MAILGUN_SMTP_SERVER'],
-    port:           ENV['MAILGUN_SMTP_PORT'],
-    domain:         'sharescription.herokuapp.com',
-    user_name:      ENV['MAILGUN_SMTP_LOGIN'],
-    password:       ENV['MAILGUN_SMTP_PASSWORD'],
-    authentication: :plain
+    address:              Rails.application.secrets.smtp_host,
+    port:                 Rails.application.secrets.smtp_port,
+    domain:               'sharescription.herokuapp.com',
+    user_name:            Rails.application.secrets.smtp_username,
+    password:             Rails.application.secrets.smtp_password,
+    authentication:       :plain,
+    enable_starttls_auto: true
   }
 
   config.action_mailer.delivery_method = :smtp
