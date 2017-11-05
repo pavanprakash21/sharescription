@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: prescriptions
@@ -15,7 +16,6 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #
-
 
 class Prescription < ApplicationRecord
   extend Enumerize

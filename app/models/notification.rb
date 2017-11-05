@@ -28,6 +28,7 @@ class Notification < ApplicationRecord
 
   enumerize :action, in: %i[requested granted shared], scope: true, predicates: true
 
+  # Creates from a share_record. Used in the observer as an after create
   def self.create_from(share_record)
     create!(sender: share_record.user, recepient: share_record.shareable, action: share_record.action,
       medical_record_id: share_record.medical_record.id, share_record_id: share_record.id)

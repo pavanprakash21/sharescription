@@ -34,12 +34,14 @@ class User < ApplicationRecord
   has_many :medical_records, dependent: :destroy
   has_many :share_records, dependent: :destroy
   has_many :prescriptions, through: :medical_records
+  # Differentiate between sent and received notifications
   has_many :sent_notifications, as: :sender, class_name: 'Notification', dependent: :destroy
   has_many :received_notifications, as: :recepient, class_name: 'Notification', dependent: :destroy
 
   devise :database_authenticatable, :registerable, :confirmable,
     :recoverable, :rememberable, :trackable, :validatable
 
+  # Add this to make devise send the mails in background
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_later
   end

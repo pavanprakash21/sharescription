@@ -4,6 +4,8 @@ module ApplicationCable
   class Connection < ActionCable::Connection::Base
     identified_by :current_user
 
+    # Identify the user by current_user
+    # Add tags for better debugging
     def connect
       self.current_user = find_verified_user
       logger.add_tags 'ActionCable', current_user.name

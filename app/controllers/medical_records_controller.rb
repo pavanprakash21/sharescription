@@ -4,6 +4,7 @@ class MedicalRecordsController < ApplicationController
   before_action :authenticate!, only: %i[new create]
   before_action :find_medical_record, only: %i[edit update destroy]
 
+  # Let only the users in
   def index
     @medical_records = if user_signed_in?
                          current_user.medical_records.order(created_at: :desc)
@@ -12,11 +13,13 @@ class MedicalRecordsController < ApplicationController
                        end
   end
 
+  # Serve docs or pharmas other index file with extra data
   def dorp_index
     @user = User.find(params[:user_id])
     @medical_records = MedicalRecord.where(user: @user)
   end
 
+  # Only users
   def new
     return unless user_signed_in?
     @medical_record = current_user.medical_records.new

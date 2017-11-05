@@ -10,6 +10,8 @@ class SearchController < ApplicationController
 
   private
 
+  # TODO: Add a better search / data rendering format. Maybe use trigram search on keypress to reduce the number of data
+  # This doesn't scale well when there are 1000s of users
   def doc_hash(data)
     Doctor.all.each do |doc|
       data["#{doc.name} (#{doc.email})"] = { id: doc.id, class: doc.class.name, name: doc.name }

@@ -34,10 +34,12 @@ class ShareRecord < ApplicationRecord
   scope :permitted,      -> { where(shared: true) }
   scope :unpermitted,      -> { where(shared: false) }
 
+  # Creates from a shareable resource. Used in the observer as an after create
   def self.shared_with(resource)
     where(shareable_type: resource.class.name, shareable_id: resource.id)
   end
 
+  # Toggles between true and false. Use this instead of #toggle as #toggle doesn't validate record
   def safe_toggle(attr)
     public_send(attr) == true ? update(:"#{attr}" => false) : update(:"#{attr}" => true)
   end

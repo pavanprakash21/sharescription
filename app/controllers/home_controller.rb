@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
+  # Don't compute if no one is logged in
   def index
     return unless user_signed_in? || doctor_signed_in? || pharmacist_signed_in?
     gather_respective_data
@@ -10,11 +11,13 @@ class HomeController < ApplicationController
 
   private
 
+  # Gather the data of respective person
   def gather_respective_data
     user_data if user_signed_in?
     dorp_data if doctor_signed_in? || pharmacist_signed_in?
   end
 
+  # More data can be added without touching the views since it will be looped
   def user_data
     total_medical_records = current_resource.medical_records.size
     total_presriptions = current_resource.prescriptions.size

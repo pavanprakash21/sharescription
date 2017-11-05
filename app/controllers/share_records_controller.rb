@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ShareRecordsController < ApplicationController
+  # CSRF can be complex. Skip only if it is a json request
   skip_before_action :verify_authenticity_token, if: :json_request?, only: %i[create temp_revoke destroy permit]
   before_action :authenticate!, only: %i[new create]
 
@@ -29,12 +30,14 @@ class ShareRecordsController < ApplicationController
     end
   end
 
+  # Temporarily change the shared status
   def temp_revoke
     share_record = current_user.share_records.find(params[:id])
     share_record.safe_toggle(:shared)
     render json: { message: 'Permission has been toggled successfully', visible: share_record.shared? }, status: 200
   end
 
+  # Permits the record to be shared
   def permit
     share_record = current_user.share_records.find(params[:id])
     share_record.update(shared: true)
@@ -57,6 +60,7 @@ class ShareRecordsController < ApplicationController
                   end
   end
 
+  # Render the fail message according to who has logged in
   def render_fail_message
     if current_user
       'This record has already been shared'
