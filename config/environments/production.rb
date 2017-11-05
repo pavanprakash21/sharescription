@@ -70,7 +70,7 @@ Rails.application.configure do
     domain:               'sharescription.herokuapp.com',
     user_name:            Rails.application.secrets.smtp_username,
     password:             Rails.application.secrets.smtp_password,
-    authentication:       :plain,
+    authentication:       :login,
     enable_starttls_auto: true
   }
 
