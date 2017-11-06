@@ -72,7 +72,7 @@ $(document).ready(function() {
         shareableId: $(this).data('sid'),
         shareableType: $(this).data('class'),
         userId: $(this).data('uid'),
-        action: 'requested'
+        action: 'requested_to'
       };
       $.ajax({
         url: '/share_records',

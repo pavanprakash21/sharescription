@@ -5,7 +5,8 @@ class HomeController < ApplicationController
   def index
     return unless user_signed_in? || doctor_signed_in? || pharmacist_signed_in?
     gather_respective_data
-    @notifications = current_resource.received_notifications.includes(:sender, :medical_record, :share_record)
+    @notifications = current_resource.received_notifications.or(current_resource.sent_notifications)
+                                     .includes(:sender, :medical_record, :share_record)
                                      .order(created_at: :desc).limit(20)
   end
 

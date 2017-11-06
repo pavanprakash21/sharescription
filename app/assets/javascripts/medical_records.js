@@ -8,7 +8,9 @@ $(document).ready(function() {
     var id = $(this).data('id');
     $.ajax({
       url: '/medical_records/' + id,
-      type: 'GET'
+      type: 'GET',
+      jsonp: 'jsonp_callback',
+      dataType: 'jsonp',
     });
     $('#prescription-modal').modal();
   });

@@ -49,6 +49,6 @@ module MedicalRecordsHelper
   end
 
   def dorp_request_icon(record, current_resource)
-    record.share_records.exists?(shareable: current_resource)
+    record.share_records.exists?(shareable: current_resource, shared: false)
   end
 end

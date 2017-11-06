@@ -26,7 +26,7 @@ class Notification < ApplicationRecord
 
   validates :action, presence: true
 
-  enumerize :action, in: %i[requested granted shared], scope: true, predicates: true
+  enumerize :action, in: %i[requested_to granted_to shared], scope: true, predicates: true
 
   # Creates from a share_record. Used in the observer as an after create
   def self.create_from(share_record)

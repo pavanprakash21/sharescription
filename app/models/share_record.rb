@@ -27,7 +27,7 @@ class ShareRecord < ApplicationRecord
 
   validates :medical_record_id, uniqueness: { scope: %i[shareable_id shareable_type] }
 
-  enumerize :action, in: %i[requested granted shared], scope: true, predicates: true
+  enumerize :action, in: %i[requested_to granted_to shared], scope: true, predicates: true
 
   scope :doctor_records, -> { where(shareable_type: 'Doctor') }
   scope :pharma_records, -> { where(shareable_type: 'Pharmacist') }

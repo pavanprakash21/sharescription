@@ -22,7 +22,7 @@
         </td>
 
         <td colspan="3" class="center">
-          <% if dorp_request_icon(record, current_resource) == 'visibility_off' %>
+          <% unless dorp_request_icon(record, current_resource) %>
             <div class='btn btn-floating orange' id="js-request-permission">
               <i class="material-icons" data-mid=<%= record.id %> data-sid=<%= current_resource.id %> data-class=<%= current_resource.class.name %> data-uid=<%= user.id %> id="js-request-permission-icon">view_array</i>
             </div>

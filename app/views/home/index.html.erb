@@ -17,7 +17,7 @@
   </div>
 <% end %>
 
-<% if @notifications %>
+<% if @notifications.present? %>
   <hr>
   <div class="row">
     <h5 class="center">Activity Feed</h5>
@@ -28,11 +28,11 @@
         <div class="col s10">
           <p class="flow-text"><%= note.sender.name %>
             has
-            <%= note.action %>
-            to view
+            <%= note.action.humanize.downcase %>
+            view
             <%= link_to note.medical_record.name, medical_record_path(note.medical_record) %></p>
         </div>
-        <% if user_signed_in? && note.action == 'requested' && note.share_record.shared == false %>
+        <% if user_signed_in? && note.action == 'requested_to' && note.share_record.shared == false %>
         <div class="col s1">
           <%= link_to '#', id: note.share_record_id do %>
           <div class='btn btn-floating teal' id="js-grant-permission">
